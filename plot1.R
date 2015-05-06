@@ -1,21 +1,17 @@
-#library(lubridate)
-#data <- read.csv2("data/household_power_consumption.txt", na.strings=c("?","NA"))
-#data$Date <- dmy(data$Date)
-#data$Time <- hms(data$Time)
-#data <- data[data$Date == ymd("2007/02/01") | data$Date == ymd("2007/02/02"), ]
-
-#save(data, file = "data.RData")
+# Please take a look to dataSubsetting.R in order to see how I filter the original dataset
+# Finaldataset has been saved in data.Rdata file so it is easy to reconstruct the plots.
 
 load("data.Rdata")
 
+png("plot1.png", width = 480, height = 480)
+
+par(mfrow = c(1,1))
+
 hist(
-    as.numeric(data$Global_active_power, na.rm = TRUE), 
+    data$Global_active_power, 
     freq = TRUE, 
     xlab = "Global Active Power (kilowatts)",
     col = "red",
-    main = "Global Active Power",
-    )
-
-windows.options(width = 480, height = 480)
-dev.copy(png, "plot1.png")
+    main = "Global Active Power"
+)
 dev.off()
